@@ -1,0 +1,56 @@
+[
+	{
+		"nombre": "Memoria1",
+		"precio": 1234,
+		"stock": 88,
+		"id": "1"
+	},
+	{
+		"nombre": "Memoria2",
+		"precio": 1122,
+		"stock": 99,
+		"id": "2"
+	},
+	{
+		"nombre": "Memoria3",
+		"precio": 1200,
+		"stock": 88,
+		"id": "3"
+	},
+	{
+		"nombre": "Memoria4",
+		"precio": 1234,
+		"stock": 88,
+		"id": "4"
+	},
+	{
+		"nombre": "Alfajor",
+		"precio": 4.05,
+		"stock": 155,
+		"id": "6"
+	},
+	{
+		"nombre": "Caramelo",
+		"precio": 0.25,
+		"stock": 2000,
+		"id": "7"
+	},
+	{
+		"nombre": "Alfajor",
+		"precio": 55,
+		"stock": 33,
+		"id": "8"
+	},
+	{
+		"nombre": "Heladito",
+		"precio": 800,
+		"stock": 99,
+		"id": "9"
+	},
+	{
+		"nombre": "Mesa",
+		"precio": 123.56,
+		"stock": 45,
+		"id": "10"
+	}
+]
