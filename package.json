@@ -9,7 +9,7 @@
     "start": "nodemon server.js"
   },
   "engines": {
-    "node": ">=18"
+    "node": "18.15.0"
   },
   "keywords": [],
   "author": "DS",
