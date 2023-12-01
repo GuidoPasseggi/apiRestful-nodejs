@@ -6,11 +6,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --watch server.js",
-    "watch": "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "keywords": [],
   "author": "DS",
