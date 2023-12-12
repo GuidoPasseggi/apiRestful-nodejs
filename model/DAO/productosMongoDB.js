@@ -1,19 +1,18 @@
-///////////////// MODEL //////////////
-// productos con  PERSISTENCIA EN MONGODB
+// MONGODB
 
 import { ObjectId } from "mongodb";
 import CnxMongoDB from "../MongoDB.js";
 
 class ModelMongoDB {
   obtenerProductos = async (id) => {
-    if (!CnxMongoDB.connection) return id ? {} : []; // tamb podríamos indicar que la DB no está conectada
+    if (!CnxMongoDB.connection) return id ? {} : []; // TODO: we could also notify that the DB is not connected
     if (id) {
       const producto = await CnxMongoDB.db
         .collection("productos")
         .findOne({ _id: new ObjectId(id) });
       return producto;
     } else {
-      const productos = await CnxMongoDB.db.collection("productos").find({}).toArray(); // devuelve un CURSOR (obj que colecciona documentos), lo pasamos a ARRAY de objetos
+      const productos = await CnxMongoDB.db.collection("productos").find({}).toArray();
       return productos;
     }
   };
@@ -22,7 +21,7 @@ class ModelMongoDB {
     if (!CnxMongoDB.connection) return {};
     producto.precio = Number(producto.precio);
     producto.stock = Number(producto.stock);
-    await CnxMongoDB.db.collection("productos").insertOne(producto); // insertOne le inserta el _id al producto automáticamente
+    await CnxMongoDB.db.collection("productos").insertOne(producto); // insertOne inserts _id automatically
     return producto;
   };
 

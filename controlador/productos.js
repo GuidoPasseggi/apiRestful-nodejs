@@ -1,8 +1,3 @@
-// TODO: CONTROLADOR tiene la responsabilidad de:
-// - tiene acceso al objeto de req, la entrada de datos del cliente
-// - con res le responde al cliente
-// - todo el resto lo debe realizar el servicio
-
 import Servicio from "../servicio/productos.js";
 
 class Controlador {
@@ -11,7 +6,6 @@ class Controlador {
   }
   obtenerProductos = async (req, res) => {
     const { id } = req.params;
-    // console.log(id);
     const productos = await this.servicio.obtenerProductos(id);
     res.json(productos);
   };
@@ -32,7 +26,6 @@ class Controlador {
     }
   };
 
-  // --------- PUT (actualización PARCIAL ) ----------
   actualizarProducto = async (req, res) => {
     const { id } = req.params;
     const producto = req.body;
@@ -40,7 +33,6 @@ class Controlador {
     res.json(productoActualizado);
   };
 
-  // delete en gral devuelve el objeto borrado (u objeto vacio)
   borrarProducto = async (req, res) => {
     const { id } = req.params;
     const productoBorrado = await this.servicio.borrarProducto(id);

@@ -4,7 +4,7 @@ import Joi from "joi";
 
 export const validar = (producto) => {
   const productoSchema = Joi.object({
-    // nombre: Joi.string().alphanum().required(), // <--- no acepta whitespaces
+    // nombre: Joi.string().alphanum().required(),
     nombre: Joi.string()
       .regex(/^[a-zA-Z0-9\s]+$/)
       .required(),

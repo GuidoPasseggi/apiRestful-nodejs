@@ -1,5 +1,4 @@
-///////////////// MODEL //////////////
-// productos con  PERSISTENCIA EN FS (fileSystem)
+// fileSystem
 
 import fs from "fs";
 
@@ -13,24 +12,22 @@ class ModelFile {
     try {
       productos = JSON.parse(fs.readFileSync(nombre, "utf-8"));
     } catch {
-      //TODO: por ahora vacío
+      //TODO:
     }
     return productos;
   };
 
   escribirArchivo = (nombre, productos) => {
-    fs.writeFileSync(nombre, JSON.stringify(productos, null, "\t"));
-    // ^_ JSON.stringify(productos,null,"\t") <--- tanto "null" como "\t" es opcional, para que al guardar el "productos.json" respete tabulaciones etc. Es solo estético
+    fs.writeFileSync(nombre, JSON.stringify(productos, null, "\t")); // "\t" respects tabulation
   };
 
   obtenerProductos = (id) => {
     try {
       const productos = this.leerArchivo(this.nombreArchivo);
       if (id) {
-        const producto = productos.find((producto) => producto.id === id); // <--- esto NO es responsabilidad del servicio en realidad (es de la capa del MODELO que aún no está implementada)
-        // console.log(producto); // TODO: usar metodo .find
+        const producto = productos.find((producto) => producto.id === id);
 
-        return producto || {}; // TODO: si no existe el id, devuelve objeto vacío <--- "||"" short circuit operator
+        return producto || {};
       } else {
         return productos;
       }
@@ -42,12 +39,11 @@ class ModelFile {
   guardarProducto = (producto) => {
     const productos = this.leerArchivo(this.nombreArchivo);
 
-    // FIXME: crear el id (notar que se pasa a num para sumarlo y luego a string. tambien notar el optional "?" (optional chaining) y el || 0 (short circuit operator)
-    producto.id = String(parseInt(productos[productos.length - 1]?.id || 0) + 1); // ?. optional chaining
+    producto.id = String(parseInt(productos[productos.length - 1]?.id || 0) + 1);
     producto.precio = Number(producto.precio);
     producto.stock = Number(producto.stock);
     productos.push(producto);
-    this.escribirArchivo(this.nombreArchivo, productos); // persistencia en memoria (fs fileSystem)
+    this.escribirArchivo(this.nombreArchivo, productos);
     return producto;
   };
 
@@ -58,7 +54,7 @@ class ModelFile {
     const index = productos.findIndex((producto) => producto.id === id);
     if (index != -1) {
       const productoAnterior = productos[index];
-      const productoNuevo = { ...productoAnterior, ...producto }; // FIXME: spread operator + object merge (nota GUIDO: funciona porque es un objeto entonces los datos se actualizan por el key <--- OBJECT MERGE)
+      const productoNuevo = { ...productoAnterior, ...producto };
       productos.splice(index, 1, productoNuevo);
       this.escribirArchivo(this.nombreArchivo, productos);
       return productoNuevo;
