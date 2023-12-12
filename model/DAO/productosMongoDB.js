@@ -20,9 +20,11 @@ class ModelMongoDB {
 
   guardarProducto = async (producto) => {
     if (!CnxMongoDB.connection) return {};
+    producto.precio = Number(producto.precio);
+    producto.stock = Number(producto.stock);
     await CnxMongoDB.db.collection("productos").insertOne(producto); // insertOne le inserta el _id al producto automáticamente
     return producto;
-  }; //FIXME: FALTA HACER QUE LOS DATOS CARGADOS DESDE EL FORMULARIO SEAN NUMBER SEGUN CORRESPONDA
+  };
 
   actualizarProducto = async (id, producto) => {
     if (!CnxMongoDB.connection) return {};
